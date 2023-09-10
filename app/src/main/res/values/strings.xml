@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Proportions Modifier</string>
+    <string name="rectangular">RECTANGULAR</string>
+    <string name="round">ROUND</string>
+    <string name="length">LENGTH</string>
+    <string name="width">WIDTH</string>
+    <string name="diameter">DIAMETER</string>
+    <string name="height">HEIGHT</string>
+    <string name="number_of_molds">NUMBER OF MOLDS</string>
+
+</resources>
