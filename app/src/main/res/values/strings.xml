@@ -7,5 +7,7 @@
     <string name="diameter">DIAMETER</string>
     <string name="height">HEIGHT</string>
     <string name="number_of_molds">NUMBER OF MOLDS</string>
+    <string name="quantity_of_molds">QUANTITY OF MOLDS</string>
+    <string name="next">NEXT</string>
 
 </resources>
