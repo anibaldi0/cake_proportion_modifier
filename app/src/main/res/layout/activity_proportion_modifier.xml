@@ -86,7 +86,7 @@
                 android:layout_height="80dp"
                 android:layout_marginBottom="5dp"
                 android:src="@drawable/circle_01_24"
-                android:tint="@color/gray"
+                android:tint="@color/gray_600"
 
                 />
 
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/round"
                 android:textAllCaps="true"
-                android:textColor="@color/gray">
+                android:textColor="@color/gray_600">
 
             </TextView>
 
@@ -228,7 +228,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/diameter"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -241,6 +241,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="60dp"
+                    android:enabled="false"
                     android:gravity="center_horizontal"
                     app:layout_constraintEnd_toEndOf="parent" />
 
@@ -270,7 +271,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewQuantityMolds"
+                android:id="@+id/textViewNumberCakePans"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginBottom="5dp"
@@ -285,10 +286,10 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/textViewQuantityMolds"
+                    android:id="@+id/textViewQuantityCakePans"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:text="@string/quantity_of_molds"
                     android:textColor="@color/black"
                     android:textSize="18sp"
@@ -298,18 +299,21 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/editTextNumberMolds"
-                    android:layout_width="100dp"
+                    android:id="@+id/editTextNumberCakePans"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
-                    android:gravity="center_horizontal"
-                    android:hint="1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:digits="123456789"
+                    android:hint="1 unit"
                     android:inputType="number"
                     android:maxLength="1"
-                    android:digits="123456789"
+                    android:textAlignment="center"
+                    android:textColorHint="@color/gray_300"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/textViewQuantityCakePans" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

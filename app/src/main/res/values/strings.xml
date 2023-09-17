@@ -6,8 +6,10 @@
     <string name="width">WIDTH</string>
     <string name="diameter">DIAMETER</string>
     <string name="height">HEIGHT</string>
-    <string name="number_of_molds">NUMBER OF MOLDS</string>
-    <string name="quantity_of_molds">QUANTITY OF MOLDS</string>
+    <string name="number_of_molds">NUMBER OF CAKE PANS</string>
+    <string name="quantity_of_molds">QUANTITY OF CAKE PANS</string>
     <string name="next">NEXT</string>
+    <string name="originalRecipe">CURRENT RECIPE</string>
+    <string name="totalOriginalVolume">TOTAL CURRENT VOLUME</string>
 
 </resources>
