@@ -11,5 +11,64 @@
     <string name="next">NEXT</string>
     <string name="originalRecipe">CURRENT RECIPE</string>
     <string name="totalOriginalVolume">TOTAL CURRENT VOLUME</string>
+    <string name="titleIngredients">CURRENT INGREDIENTS</string>
+    <string name="ingredient">INGREDIENT</string>
+
+    <string-array name="suggestions">
+        <item>Manzana</item>
+        <item>Fecula de Maiz</item>
+        <item>Bananas</item>
+        <item>Naranja</item>
+        <item>Pera</item>
+        <item>Harina de trigo</item>
+        <item>Azucar</item>
+        <item>Huevos</item>
+        <item>Manteca</item>
+        <item>Levadura en polvo</item>
+        <item>Sal</item>
+        <item>Vainilla</item>
+        <item>Leche</item>
+        <item>Chocolate</item>
+        <item>Cacao en polvo</item>
+        <item>Nueces</item>
+        <item>Almendras</item>
+        <item>Maizena</item>
+        <item>Extracto de limon</item>
+        <item>Extracto de naranja</item>
+        <item>Crema de leche</item>
+        <item>Yogur</item>
+        <item>Aceite vegetal</item>
+        <item>Canela</item>
+        <item>Clavo de olor</item>
+        <item>Jengibre</item>
+        <item>Esencia de vainilla</item>
+        <item>Frutas abrillantada</item>
+        <item>Ralladura de limón</item>
+        <item>Ralladura de naranja</item>
+        <item>Polvo de hornear</item>
+        <item>Bicarbonato</item>
+        <item>Miel</item>
+        <item>Azucar impalpable</item>
+        <item>Azucar moreno</item>
+        <item>Coco rallado</item>
+        <item>Cerezas en almibar</item>
+        <item>Ricota</item>
+        <item>Frutillas</item>
+        <item>Avena</item>
+        <item>Sirope de maiz</item>
+        <item>Mermelada</item>
+        <item>Pure de manzana</item>
+        <item>Gelatina</item>
+        <item>Nutella</item>
+        <item>Galletas</item>
+        <item>Fresas</item>
+        <item>Arandanos</item>
+        <item>Frambuesas</item>
+        <item>Moras</item>
+        <item>Pasta de almendras</item>
+        <item>Crema de avellanas</item>
+
+        <!-- Agrega más sugerencias aquí -->
+    </string-array>
 
 </resources>

@@ -5,46 +5,299 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProportionModifier.OriginalRecipeActivity">
-    <TextView
-        android:id="@+id/textViewCurrentRecipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/originalRecipe"
-        app:layout_constraintStart_toStartOf="parent"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewCurrentRecipe"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/purple_200"
+        app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        />
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/textViewCurrentRecipe"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textViewTitleTotalCurrentVolume"
+            android:id="@+id/textViewCurrentRecipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/totalOriginalVolume"
-            />
+            android:layout_gravity="center_horizontal"
+            android:text="@string/originalRecipe"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/cardViewCurrentRecipe"
+            app:layout_constraintStart_toStartOf="@id/cardViewCurrentRecipe"
+            app:layout_constraintTop_toTopOf="@id/cardViewCurrentRecipe" />
 
-        <TextView
-            android:id="@+id/textViewTotalCurrentVolume"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/textViewTitleTotalCurrentVolume"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="volume"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewCurrentRecipe">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textViewTitleTotalCurrentVolume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="@string/totalOriginalVolume"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewTotalCurrentVolume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="volume"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textViewTitleTotalCurrentVolume" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewElementsCurrentRecipe"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:cardBackgroundColor="@color/purple_200"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardViewCurrentRecipe">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewTitleIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/titleIngredients"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <AutoCompleteTextView
+                android:id="@+id/ingredient01"
+                style="@style/textIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                app:layout_constraintEnd_toStartOf="@id/element09a"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewTitleIngredients" />
+
+            <EditText
+                android:id="@+id/element01a"
+                style="@style/quantityIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ingredient09"
+                app:layout_constraintTop_toBottomOf="@id/textViewTitleIngredients" />
+
+            <AutoCompleteTextView
+                android:id="@+id/ingredient02"
+                style="@style/textIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                app:layout_constraintEnd_toStartOf="@id/element09a"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ingredient01" />
+
+            <EditText
+                android:id="@+id/element02a"
+                style="@style/quantityIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ingredient09"
+                app:layout_constraintTop_toBottomOf="@id/element01a" />
+
+
+            <AutoCompleteTextView
+                android:id="@+id/ingredient03"
+                style="@style/textIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                app:layout_constraintEnd_toStartOf="@id/element09a"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ingredient02" />
+
+            <EditText
+                android:id="@+id/element03a"
+                style="@style/quantityIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ingredient09"
+                app:layout_constraintTop_toBottomOf="@id/element02a" />
+
+            <AutoCompleteTextView
+                android:id="@+id/ingredient04"
+                style="@style/textIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                app:layout_constraintEnd_toStartOf="@id/element09a"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ingredient03" />
+
+            <EditText
+                android:id="@+id/element04a"
+                style="@style/quantityIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ingredient09"
+                app:layout_constraintTop_toBottomOf="@id/element03a" />
+
+            <AutoCompleteTextView
+                android:id="@+id/ingredient05"
+                style="@style/textIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                app:layout_constraintEnd_toStartOf="@id/element09a"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ingredient04" />
+
+            <EditText
+                android:id="@+id/element05a"
+                style="@style/quantityIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ingredient09"
+                app:layout_constraintTop_toBottomOf="@id/element04a" />
+
+            <AutoCompleteTextView
+                android:id="@+id/ingredient06"
+                style="@style/textIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                app:layout_constraintEnd_toStartOf="@id/element09a"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ingredient05" />
+
+            <EditText
+                android:id="@+id/element06a"
+                style="@style/quantityIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ingredient09"
+                app:layout_constraintTop_toBottomOf="@id/element05a" />
+
+            <AutoCompleteTextView
+                android:id="@+id/ingredient07"
+                style="@style/textIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                app:layout_constraintEnd_toStartOf="@id/element09a"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ingredient06" />
+
+            <EditText
+                android:id="@+id/element07a"
+                style="@style/quantityIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ingredient09"
+                app:layout_constraintTop_toBottomOf="@id/element06a" />
+
+            <AutoCompleteTextView
+                android:id="@+id/ingredient08"
+                style="@style/textIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                app:layout_constraintEnd_toStartOf="@id/element09a"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ingredient07" />
+
+            <EditText
+                android:id="@+id/element08a"
+                style="@style/quantityIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ingredient09"
+                app:layout_constraintTop_toBottomOf="@id/element07a" />
+
+            <AutoCompleteTextView
+                android:id="@+id/ingredient09"
+                style="@style/textIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                app:layout_constraintEnd_toStartOf="@id/element09a"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ingredient08"
+                />
+
+            <EditText
+                android:id="@+id/element09a"
+                style="@style/quantityIngredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="quantity"
+                android:inputType="number"
+                android:maxLength="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/element08a"
+                app:layout_constraintStart_toEndOf="@id/ingredient09"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewButtonCalculate"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/purple_200"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintTop_toBottomOf="@id/cardViewElementsCurrentRecipe">
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
