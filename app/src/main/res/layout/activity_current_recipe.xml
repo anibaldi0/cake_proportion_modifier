@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProportionModifier.OriginalRecipeActivity">
+    tools:context=".ProportionModifier.CurrentRecipeActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewCurrentRecipe"
@@ -17,12 +17,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/imageViewButtonArrowBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/arrow_back_24"
+            app:tint="@color/black"
+            />
+
         <TextView
             android:id="@+id/textViewCurrentRecipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/originalRecipe"
+            android:text="@string/currentRecipe"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -45,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:text="@string/totalOriginalVolume"
+                android:text="@string/totalCurrentVolume"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -55,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="volume"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/textViewTitleTotalCurrentVolume" />
@@ -77,14 +86,15 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <TextView
                 android:id="@+id/textViewTitleIngredients"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="@string/titleIngredients"
+                android:text="@string/titleCurrentIngredients"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -248,7 +258,9 @@
                 android:completionThreshold="1"
                 app:layout_constraintEnd_toStartOf="@id/element09a"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ingredient07" />
+                app:layout_constraintTop_toBottomOf="@id/ingredient07"
+                />
+
 
             <EditText
                 android:id="@+id/element08a"
@@ -297,6 +309,26 @@
         app:cardBackgroundColor="@color/purple_200"
         app:cardCornerRadius="16dp"
         app:layout_constraintTop_toBottomOf="@id/cardViewElementsCurrentRecipe">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calculate"
+                android:textAllCaps="true"
+                android:textColor="@color/purple_700"
+                android:textSize="24sp"
+                android:textStyle="bold">
+
+            </TextView>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.cardview.widget.CardView>
 

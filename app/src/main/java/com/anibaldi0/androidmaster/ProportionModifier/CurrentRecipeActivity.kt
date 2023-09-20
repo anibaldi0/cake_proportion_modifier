@@ -1,16 +1,20 @@
 package com.anibaldi0.androidmaster.ProportionModifier
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.ImageView
 import android.widget.TextView
 import com.anibaldi0.androidmaster.R
 
-class OriginalRecipeActivity : AppCompatActivity() {
+class CurrentRecipeActivity : AppCompatActivity() {
+
+    private lateinit var imageViewButtonArrowBack: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_original_recipe)
+        setContentView(R.layout.activity_current_recipe)
 
         val textViewTotalCurrentVolume = findViewById<TextView>(R.id.textViewTotalCurrentVolume)
         val currentVolume: String = intent.extras?.getString("VOLUME_ROUND").orEmpty()
@@ -45,6 +49,21 @@ class OriginalRecipeActivity : AppCompatActivity() {
             autoCompleteTextView.setAdapter(adapter)
         }
 
+        initComponent()
+        initListeners()
 
     }
+
+    private fun initListeners() {
+        imageViewButtonArrowBack.setOnClickListener {
+            val intent = Intent(this, NewCakePanActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun initComponent() {
+        imageViewButtonArrowBack = findViewById(R.id.imageViewButtonArrowBack)
+
+    }
+
 }

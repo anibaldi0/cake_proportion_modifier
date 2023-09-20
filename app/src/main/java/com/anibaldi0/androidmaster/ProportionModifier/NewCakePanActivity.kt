@@ -1,7 +1,6 @@
 package com.anibaldi0.androidmaster.ProportionModifier
 
 import android.content.Intent
-import android.hardware.camera2.params.MeteringRectangle
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.anibaldi0.androidmaster.R
 
-class ProportionModifierActivity : AppCompatActivity() {
+class NewCakePanActivity : AppCompatActivity() {
 
     private var isRectangleSelected: Boolean = true
     private var isRoundSelected: Boolean = false
@@ -33,12 +32,13 @@ class ProportionModifierActivity : AppCompatActivity() {
     private lateinit var editTextNumberWidth: EditText
     private lateinit var textViewMesureLength: TextView
     private lateinit var editTextNumberLength: EditText
+    private lateinit var imageViewButtonArrowBack: ImageView
 
     private lateinit var cardViewButtonNext: CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_proportion_modifier)
+        setContentView(R.layout.activity_new_cake_pan)
 
         initComponents()
         initListeners()
@@ -62,6 +62,7 @@ class ProportionModifierActivity : AppCompatActivity() {
         editTextNumberLength = findViewById(R.id.editTextNumberLength)
         textViewMesureHeight = findViewById(R.id.textViewMesureHeight)
         editTextNumberHeight = findViewById(R.id.editTextNumberHeight)
+        imageViewButtonArrowBack = findViewById(R.id.imageViewButtonArrowBack)
 
         cardViewButtonNext = findViewById((R.id.cardViewButtonNext))
     }
@@ -95,37 +96,43 @@ class ProportionModifierActivity : AppCompatActivity() {
 
         }
         cardViewButtonNext.setOnClickListener {
-            val intent = Intent(this, NewCakePanActivity::class.java)
+            val intent = Intent(this, CurrentRecipeActivity::class.java)
             if (isRoundSelected){
-                val volumeRound = currentVolumeRound().toString()
-                intent.putExtra("VOLUME_ROUND", volumeRound)
+                val finalNewVolumeRound = newVolumeRound().toString()
+                intent.putExtra("NEW_VOLUME_ROUND", finalNewVolumeRound)
                 startActivity(intent)
-                Log.i("NibalDev", "Boton Pulsado para Round: $volumeRound")
+                Log.i("NibalDev", "Boton Pulsado para Round: $finalNewVolumeRound")
             } else {
-                val volumeRectangle = currentVolumeRectangle().toString()
-                intent.putExtra("VOLUME_ROUND", volumeRectangle)
+                val finalNewVolumeRectangle = newVolumeRectangle().toString()
+                intent.putExtra("NEW_VOLUME_ROUND", finalNewVolumeRectangle)
                 startActivity(intent)
-                Log.i("NibalDev", "Boton Pulsado para Rectangular $volumeRectangle")
+                Log.i("NibalDev", "Boton Pulsado para Rectangular $finalNewVolumeRectangle")
             }
 
         }
+
+        imageViewButtonArrowBack.setOnClickListener {
+            val intent = Intent(this, ProportionModifierActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
-    private fun currentVolumeRound(): Double {
-        val currentDiameter = editTextNumberDiameter.text.toString().toDoubleOrNull() ?: 1.0
-        val currentHeight = editTextNumberHeight.text.toString().toDoubleOrNull() ?: 1.0
-        val currentNumberCakePans = editTextNumberCakePans.text.toString().toDoubleOrNull()  ?: 1.0
-        val currentVolumeRound = (currentHeight * ((currentDiameter / 2) * (currentDiameter / 2))) * 3.14 * currentNumberCakePans
-        return currentVolumeRound
+    private fun newVolumeRound(): Double {
+        val newDiameter = editTextNumberDiameter.text.toString().toDoubleOrNull() ?: 1.0
+        val newHeight = editTextNumberHeight.text.toString().toDoubleOrNull() ?: 1.0
+        val newNumberCakePans = editTextNumberCakePans.text.toString().toDoubleOrNull()  ?: 1.0
+        val newVolumeRound = (newHeight * ((newDiameter / 2) * (newDiameter / 2))) * 3.14 * newNumberCakePans
+        return newVolumeRound
     }
 
-    private fun currentVolumeRectangle(): Double {
-        val currentHeight = editTextNumberHeight.text.toString().toDoubleOrNull() ?: 1.0
-        val currentWidth = editTextNumberWidth.text.toString().toDoubleOrNull() ?: 1.0
-        val currentLength = editTextNumberLength.text.toString().toDoubleOrNull() ?: 1.0
-        val currentNumberCakePans = editTextNumberCakePans.text.toString().toDoubleOrNull() ?: 1.0
-        val currentVolumeRectangle = currentHeight * currentWidth * currentLength * currentNumberCakePans
-        return currentVolumeRectangle
+    private fun newVolumeRectangle(): Double {
+        val newHeight = editTextNumberHeight.text.toString().toDoubleOrNull() ?: 1.0
+        val newWidth = editTextNumberWidth.text.toString().toDoubleOrNull() ?: 1.0
+        val newLength = editTextNumberLength.text.toString().toDoubleOrNull() ?: 1.0
+        val newNumberCakePans = editTextNumberCakePans.text.toString().toDoubleOrNull() ?: 1.0
+        val newVolumeRectangle = newHeight * newWidth * newLength * newNumberCakePans
+        return newVolumeRectangle
     }
 
 

@@ -9,10 +9,14 @@
     <string name="number_of_molds">NUMBER OF CAKE PANS</string>
     <string name="quantity_of_molds">QUANTITY OF CAKE PANS</string>
     <string name="next">NEXT</string>
-    <string name="originalRecipe">CURRENT RECIPE</string>
-    <string name="totalOriginalVolume">TOTAL CURRENT VOLUME</string>
-    <string name="titleIngredients">CURRENT INGREDIENTS</string>
+    <string name="currentRecipe">CURRENT RECIPE</string>
+    <string name="totalCurrentVolume">TOTAL CURRENT VOLUME</string>
+    <string name="titleCurrentIngredients">CURRENT INGREDIENTS</string>
+    <string name="newRecipe">NEW RECIPE</string>
+    <string name="totalNewlVolume">TOTAL NEW VOLUME</string>
+    <string name="titleNewIngredients">NEW INGREDIENTS</string>
     <string name="ingredient">INGREDIENT</string>
+    <string name="calculate">CALCULATE NEW RECIPE</string>
 
     <string-array name="suggestions">
         <item>Manzana</item>
