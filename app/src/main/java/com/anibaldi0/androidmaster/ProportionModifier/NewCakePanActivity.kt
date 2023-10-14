@@ -96,23 +96,23 @@ class NewCakePanActivity : AppCompatActivity() {
 
         }
         cardViewButtonNext.setOnClickListener {
-            val intent = Intent(this, CurrentRecipeActivity::class.java)
+            val intent = Intent(this, NewRecipeActivity::class.java)
             if (isRoundSelected){
-                val finalNewVolumeRound = newVolumeRound().toString()
-                intent.putExtra("NEW_VOLUME_ROUND", finalNewVolumeRound)
+                val newVolume = newVolumeRound().toString()
+                intent.putExtra("NEW_VOLUME", newVolume)
                 startActivity(intent)
-                Log.i("NibalDev", "Boton Pulsado para Round: $finalNewVolumeRound")
+                Log.i("NibalDev", "Boton Pulsado para Round: $newVolume")
             } else {
-                val finalNewVolumeRectangle = newVolumeRectangle().toString()
-                intent.putExtra("NEW_VOLUME_ROUND", finalNewVolumeRectangle)
+                val newVolume = newVolumeRectangle().toString()
+                intent.putExtra("NEW_VOLUME", newVolume)
                 startActivity(intent)
-                Log.i("NibalDev", "Boton Pulsado para Rectangular $finalNewVolumeRectangle")
+                Log.i("NibalDev", "Boton Pulsado para Rectangular $newVolume")
             }
 
         }
 
         imageViewButtonArrowBack.setOnClickListener {
-            val intent = Intent(this, ProportionModifierActivity::class.java)
+            val intent = Intent(this, CurrentRecipeActivity::class.java)
             startActivity(intent)
         }
 
@@ -183,3 +183,4 @@ class NewCakePanActivity : AppCompatActivity() {
 
 
 }
+

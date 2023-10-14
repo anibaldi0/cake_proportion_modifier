@@ -1,7 +1,7 @@
 package com.anibaldi0.androidmaster.ProportionModifier
 
+import android.content.Context
 import android.content.Intent
-import android.hardware.camera2.params.MeteringRectangle
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,11 +11,13 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.anibaldi0.androidmaster.R
+import android.content.SharedPreferences
 
 class ProportionModifierActivity : AppCompatActivity() {
 
     private var isRectangleSelected: Boolean = true
     private var isRoundSelected: Boolean = false
+    private var currentVolume: String = ""
 
     private lateinit var cardViewRectangle: CardView
     private lateinit var cardViewRound: CardView
@@ -43,7 +45,34 @@ class ProportionModifierActivity : AppCompatActivity() {
         initComponents()
         initListeners()
         initUI()
+
+        val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+
+        val  savedHeight = sharedPreferences.getString("height", "")
+        val  savedWidth = sharedPreferences.getString("width", "")
+        val  savedLength = sharedPreferences.getString("length", "")
+        val  savedDiameter = sharedPreferences.getString("diameter", "")
+        val  savedQuantityCakePans = sharedPreferences.getString("quantity_cake_pans", "")
+
+        editTextNumberHeight.setText(savedHeight)
+        editTextNumberWidth.setText(savedWidth)
+        editTextNumberLength.setText(savedLength)
+        editTextNumberDiameter.setText(savedDiameter)
+        editTextNumberCakePans.setText(savedQuantityCakePans)
+
+//        isRectangleSelected = sharedPreferences.getBoolean("isRectangleSelected", true)
+//        isRoundSelected = sharedPreferences.getBoolean("isRoundSelected", true)
+
+        if (isRectangleSelected) {
+            cardViewRectangle.setCardBackgroundColor(getBackgroundColorSelected(true))
+            cardViewRound.setCardBackgroundColor(getBackgroundColorSelected(false))
+        }else{
+            cardViewRound.setCardBackgroundColor(getBackgroundColorSelected(true))
+            cardViewRectangle.setCardBackgroundColor(getBackgroundColorSelected(false))
+        }
+
     }
+
 
     private fun initComponents() {
         cardViewRectangle = findViewById(R.id.cardViewRectangle)
@@ -67,48 +96,89 @@ class ProportionModifierActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
+
         cardViewRectangle.setOnClickListener {
-            changeCakePan()
+            isRectangleSelected = true
+            isRoundSelected = false
+            rectangleSelected()
             setCakePanFormColor()
-            textViewCakePan.text = "Rectangular"
-            textViewMesureDiameter.setTextColor(ContextCompat.getColor(this, R.color.gray_300))
-            textViewMesureWidth.setTextColor(ContextCompat.getColor(this, R.color.black))
-            textViewMesureLength.setTextColor(ContextCompat.getColor(this, R.color.black))
-            editTextNumberDiameter.isEnabled = false
-            editTextNumberDiameter.text.clear()
-            editTextNumberWidth.isEnabled = true
-            editTextNumberLength.isEnabled = true
 
         }
         cardViewRound.setOnClickListener {
-            changeCakePan()
+            isRoundSelected = true
+            isRectangleSelected = false
+            roundSelected()
             setCakePanFormColor()
-            textViewCakePan.text = "Round"
-            textViewMesureDiameter.setTextColor(ContextCompat.getColor(this, R.color.black))
-            textViewMesureWidth.setTextColor(ContextCompat.getColor(this, R.color.gray_300))
-            textViewMesureLength.setTextColor(ContextCompat.getColor(this, R.color.gray_300))
-            editTextNumberWidth.isEnabled = false
-            editTextNumberLength.isEnabled = false
-            editTextNumberWidth.text.clear()
-            editTextNumberLength.text.clear()
-            editTextNumberDiameter.isEnabled = true
 
         }
         cardViewButtonNext.setOnClickListener {
-            val intent = Intent(this, NewCakePanActivity::class.java)
+            val intent = Intent(this, CurrentRecipeActivity::class.java)
             if (isRoundSelected){
-                val volumeRound = currentVolumeRound().toString()
-                intent.putExtra("VOLUME_ROUND", volumeRound)
-                startActivity(intent)
-                Log.i("NibalDev", "Boton Pulsado para Round: $volumeRound")
+                currentVolume = currentVolumeRound().toString()
+                Log.i("NibalDev", "Boton Pulsado para Round: $currentVolume")
             } else {
-                val volumeRectangle = currentVolumeRectangle().toString()
-                intent.putExtra("VOLUME_ROUND", volumeRectangle)
-                startActivity(intent)
-                Log.i("NibalDev", "Boton Pulsado para Rectangular $volumeRectangle")
+                currentVolume = currentVolumeRectangle().toString()
+                Log.i("NibalDev", "Boton Pulsado para Rectangular $currentVolume")
             }
 
+            val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+
+            editor.putString("height", editTextNumberHeight.text.toString())
+            editor.putString("width", editTextNumberWidth.text.toString())
+            editor.putString("length", editTextNumberLength.text.toString())
+            editor.putString("diameter", editTextNumberDiameter.text.toString())
+            editor.putString("quantity_cake_pans", editTextNumberCakePans.text.toString())
+
+            editor.putBoolean("isRectangleSelected", isRectangleSelected)
+            editor.putBoolean("isRoundSelected", isRoundSelected)
+
+            editor.apply()
+
+            intent.putExtra("CURRENT_VOLUME", currentVolume)
+            startActivity(intent)
+
         }
+    }
+
+    private fun roundSelected() {
+        isRoundSelected = true
+        isRectangleSelected = false
+        textViewCakePan.text = "Round"
+        textViewMesureDiameter.setTextColor(ContextCompat.getColor(this, R.color.black))
+        textViewMesureWidth.setTextColor(ContextCompat.getColor(this, R.color.gray_600))
+        textViewMesureLength.setTextColor(ContextCompat.getColor(this, R.color.gray_600))
+        editTextNumberWidth.isEnabled = false
+        editTextNumberLength.isEnabled = false
+        editTextNumberWidth.text.clear()
+        editTextNumberLength.text.clear()
+        editTextNumberDiameter.isEnabled = true
+        editTextNumberHeight.setHintTextColor(ContextCompat.getColor(this, R.color.gray_300))
+        editTextNumberDiameter.setHintTextColor(ContextCompat.getColor(this, R.color.gray_300))
+        editTextNumberCakePans.setHintTextColor(ContextCompat.getColor(this, R.color.gray_300))
+        editTextNumberWidth.setHintTextColor(ContextCompat.getColor(this, R.color.gray_600))
+        editTextNumberLength.setHintTextColor(ContextCompat.getColor(this, R.color.gray_600))
+
+    }
+
+    private fun rectangleSelected() {
+        isRoundSelected = true
+        isRoundSelected = false
+        textViewCakePan.text = "Rectangular"
+        textViewMesureDiameter.setTextColor(ContextCompat.getColor(this, R.color.gray_600))
+        textViewMesureWidth.setTextColor(ContextCompat.getColor(this, R.color.black))
+        textViewMesureLength.setTextColor(ContextCompat.getColor(this, R.color.black))
+        editTextNumberDiameter.isEnabled = false
+        editTextNumberDiameter.text.clear()
+        editTextNumberWidth.isEnabled = true
+        editTextNumberLength.isEnabled = true
+        textViewMesureDiameter.setTextColor(ContextCompat.getColor(this, R.color.gray_600))
+        editTextNumberHeight.setHintTextColor(ContextCompat.getColor(this, R.color.gray_300))
+        editTextNumberDiameter.setHintTextColor(ContextCompat.getColor(this, R.color.gray_600))
+        editTextNumberCakePans.setHintTextColor(ContextCompat.getColor(this, R.color.gray_300))
+        editTextNumberWidth.setHintTextColor(ContextCompat.getColor(this, R.color.gray_300))
+        editTextNumberLength.setHintTextColor(ContextCompat.getColor(this, R.color.gray_300))
+
     }
 
     private fun currentVolumeRound(): Double {
@@ -128,46 +198,37 @@ class ProportionModifierActivity : AppCompatActivity() {
         return currentVolumeRectangle
     }
 
-
-    private fun changeCakePan() {
-        isRectangleSelected = !isRectangleSelected
-        isRoundSelected = !isRoundSelected
-    }
-
     private fun setCakePanFormColor() {
-        cardViewRectangle.setCardBackgroundColor(getBackgroundColor(isRectangleSelected))
-        cardViewRound.setCardBackgroundColor(getBackgroundColor(isRoundSelected))
-        rectangleImage.setColorFilter(getImageColor(isRectangleSelected))
-        rectangleText.setTextColor(getTextColor(isRectangleSelected))
-        roundImage.setColorFilter(getImageColor(isRoundSelected))
-        roundText.setTextColor(getTextColor(isRoundSelected))
+        cardViewRectangle.setCardBackgroundColor(getBackgroundColorSelected(isRectangleSelected))
+        cardViewRound.setCardBackgroundColor(getBackgroundColorSelected(isRoundSelected))
+        rectangleImage.setColorFilter(getImageColorSelected(isRectangleSelected))
+        roundImage.setColorFilter(getImageColorSelected(isRoundSelected))
+        rectangleText.setTextColor(getTextColorSelected(isRectangleSelected))
+        roundText.setTextColor(getTextColorSelected(isRoundSelected))
+
+        if (isRectangleSelected) {
+            // Configurar el fondo del cardViewRectangle como presionado
+            cardViewRectangle.setCardBackgroundColor(getBackgroundColorSelected(true))
+            editTextNumberDiameter.setHintTextColor(ContextCompat.getColor(this, R.color.gray_600))
+            textViewMesureDiameter.setTextColor(ContextCompat.getColor(this, R.color.gray_600))
+        } else {
+            // Configurar el fondo del cardViewRectangle como no presionado
+            cardViewRectangle.setCardBackgroundColor(getBackgroundColorSelected(false))
+            // Configurar otros elementos según el estado
+            //...
+        }
     }
 
-    private fun getImageColor(isSelectedComponent: Boolean): Int {
-        val colorImageReference = if (isSelectedComponent) {
-            R.color.white
-        } else {
-            R.color.gray_600
-        }
-        return ContextCompat.getColor(this, colorImageReference)
+    private fun getImageColorSelected(isSelectedComponent: Boolean): Int {
+        return ContextCompat.getColor(this, if (isSelectedComponent) R.color.white else R.color.gray_600)
     }
 
-    private fun getTextColor(isSelectedComponent: Boolean): Int {
-        val colorTextReference = if (isSelectedComponent) {
-            R.color.white
-        } else {
-            R.color.gray_600
-        }
-        return ContextCompat.getColor(this, colorTextReference)
+    private fun getTextColorSelected(isSelectedComponent: Boolean): Int {
+        return ContextCompat.getColor(this, if (isSelectedComponent) R.color.white else R.color.gray_600)
     }
 
-    private fun getBackgroundColor(isSelectedComponent: Boolean): Int {
-        val colorReference = if (isSelectedComponent) {
-            R.color.teal_200
-        } else {
-            R.color.teal_700
-        }
-        return ContextCompat.getColor(this, colorReference)
+    private fun getBackgroundColorSelected(isSelectedComponent: Boolean): Int {
+        return ContextCompat.getColor(this, if (isSelectedComponent) R.color.teal_200 else R.color.teal_700)
     }
 
     private fun initUI() {

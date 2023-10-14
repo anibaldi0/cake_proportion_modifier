@@ -1,23 +1,30 @@
 package com.anibaldi0.androidmaster.ProportionModifier
 
 import android.content.Intent
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import com.anibaldi0.androidmaster.R
 
 class CurrentRecipeActivity : AppCompatActivity() {
 
     private lateinit var imageViewButtonArrowBack: ImageView
+    private lateinit var cardViewButtonCalculate: CardView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_current_recipe)
 
+
+
         val textViewTotalCurrentVolume = findViewById<TextView>(R.id.textViewTotalCurrentVolume)
-        val currentVolume: String = intent.extras?.getString("VOLUME_ROUND").orEmpty()
+        val currentVolume: String = intent.extras?.getString("CURRENT_VOLUME").orEmpty()
         textViewTotalCurrentVolume.text = "$currentVolume ml"
 
         val autoCompleteTextView = arrayOf(
@@ -56,6 +63,11 @@ class CurrentRecipeActivity : AppCompatActivity() {
 
     private fun initListeners() {
         imageViewButtonArrowBack.setOnClickListener {
+            val intent = Intent(this, ProportionModifierActivity::class.java)
+            startActivity(intent)
+        }
+
+        cardViewButtonCalculate.setOnClickListener {
             val intent = Intent(this, NewCakePanActivity::class.java)
             startActivity(intent)
         }
@@ -63,7 +75,23 @@ class CurrentRecipeActivity : AppCompatActivity() {
 
     private fun initComponent() {
         imageViewButtonArrowBack = findViewById(R.id.imageViewButtonArrowBack)
+        cardViewButtonCalculate = findViewById(R.id.cardViewButtonCalculate)
 
     }
 
+}
+
+class MySharedPreferences (context: Context) {
+    private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+
+
+    fun saveCurrentVolume (volume: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString("currentVolume", volume)
+        editor.apply()
+    }
+
+    fun getCurrentVolume (): String? {
+        return sharedPreferences.getString("currentVolume", "")
+    }
 }
